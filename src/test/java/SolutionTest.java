@@ -18,59 +18,39 @@ public class SolutionTest {
     }
 
     @Test
-    void canTransformMapToArray() {
-        String map = "O__;_X_;_T_";
-        List<List<String>> expected = new ArrayList<>(List.of(
-                new ArrayList<>(List.of("O", "_", "_")),
-                new ArrayList<>(List.of("_", "X", "_")),
-                new ArrayList<>(List.of("_", "T", "_"))
-        ));
-        assertEquals(expected, solution.convertMapToMatrixArray(map));
-    }
-
-    @Test
-    void canReturnPositionCoordinatesFromMap() {
-        List<List<String>> map = solution.convertMapToMatrixArray("O__;_X_;_T_");
-        Coordinates expected = new Coordinates( 0, 0);
-        assertEquals(expected, solution.getPosition("O", map));
-        expected = new Coordinates(1, 2);
-        assertEquals(expected, solution.getPosition("T", map));
-    }
-
-    @Test
     void canCalculateOfficersNextPotentialMoves_noObstacles() {
-        List<List<String>> map = solution.convertMapToMatrixArray("O__;___;_T_");
-        Coordinates officerCoordinates = solution.getPosition("O", map);
+        solution.setMap("O__;___;_T_");
+        Coordinates officerCoordinates = solution.getPosition("O");
         List<Coordinates> expected = new ArrayList<>(List.of(
                 new Coordinates(1,0),
                 new Coordinates(0,1)
         ));
-        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates, map));
+        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates));
 
-        map = solution.convertMapToMatrixArray("X__;_O_;__T");
-        officerCoordinates = solution.getPosition("O", map);
+        solution.setMap("X__;_O_;__T");
+        officerCoordinates = solution.getPosition("O");
         expected = new ArrayList<>(List.of(
                 new Coordinates(0,1),
                 new Coordinates(1,0),
                 new Coordinates(2,1),
                 new Coordinates(1,2)
         ));
-        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates, map));
+        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates));
     }
 
     @Test
     void calculateNextPotentialMove_withObstacles() {
-        List<List<String>> map = solution.convertMapToMatrixArray("_X_;XOX;_XT");
-        Coordinates officerCoordinates = solution.getPosition("O", map);
+        solution.setMap("_X_;XOX;_XT");
+        Coordinates officerCoordinates = solution.getPosition("O");
         List<Coordinates> expected = new ArrayList<>();
-        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates, map));
+        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates));
 
-        map = solution.convertMapToMatrixArray("___;_OX;_XT");
-        officerCoordinates = solution.getPosition("O", map);
+        solution.setMap("___;_OX;_XT");
+        officerCoordinates = solution.getPosition("O");
         expected = new ArrayList<>(List.of(
                 new Coordinates(0,1), new Coordinates(1,0)
         ));
-        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates, map));
+        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates));
     }
 
 
