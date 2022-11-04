@@ -14,7 +14,7 @@ it should return -2;
 
 Example:
 
-map: "O__;X__;_T_"
+map: "O__;X__; _ T _"
 as a matrix : 
 [O _ _]
 [X _ _]
