@@ -41,19 +41,19 @@ public class Solution {
     public List<Coordinates> calculateNextPossibleMovements(Coordinates officerCoordinates, List<List<String>> map) {
         List<Coordinates> result = new ArrayList<>();
 
-        if (officerCoordinates.getX() != 0) {
+        if (officerCoordinates.getX() != 0 && !Objects.equals(map.get(officerCoordinates.getX() - 1).get(officerCoordinates.getY()), "X")) {
             Coordinates moveLeft = new Coordinates(officerCoordinates.getX() - 1, officerCoordinates.getY());
             result.add(moveLeft);
         }
-        if(officerCoordinates.getY() != 0) {
+        if(officerCoordinates.getY() != 0 && !Objects.equals(map.get(officerCoordinates.getX()).get(officerCoordinates.getY() -1), "X")) {
             Coordinates moveUp = new Coordinates(officerCoordinates.getX(), officerCoordinates.getY()-1);
             result.add(moveUp);
         }
-        if (officerCoordinates.getX() != map.get(0).size() - 1) {
+        if (officerCoordinates.getX() != map.get(0).size() - 1 && !Objects.equals(map.get(officerCoordinates.getX() + 1).get(officerCoordinates.getY()), "X")) {
             Coordinates moveRight = new Coordinates(officerCoordinates.getX() + 1, officerCoordinates.getY());
             result.add(moveRight);
         }
-        if (officerCoordinates.getY() != map.size() - 1) {
+        if (officerCoordinates.getY() != map.size() - 1 && !Objects.equals(map.get(officerCoordinates.getX()).get(officerCoordinates.getY() + 1) , "X")) {
             Coordinates moveDown = new Coordinates(officerCoordinates.getX(), officerCoordinates.getY() + 1);
             result.add(moveDown);
         }

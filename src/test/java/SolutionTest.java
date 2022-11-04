@@ -64,7 +64,16 @@ public class SolutionTest {
         Coordinates officerCoordinates = solution.getPosition("O", map);
         List<Coordinates> expected = new ArrayList<>();
         assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates, map));
+
+        map = solution.convertMapToMatrixArray("___;_OX;_XT");
+        officerCoordinates = solution.getPosition("O", map);
+        expected = new ArrayList<>(List.of(
+                new Coordinates(0,1), new Coordinates(1,0)
+        ));
+        assertEquals(expected, solution.calculateNextPossibleMovements(officerCoordinates, map));
     }
+
+
 
     //    @Test
 //    void returnsNumberOfMovesCountingStart() {
